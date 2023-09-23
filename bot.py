@@ -19,10 +19,10 @@ st.sidebar.markdown("## Instructions")
 st.sidebar.write("1. Type your message in the text input box.")
 st.sidebar.write("2. Click the 'Send' button to chat with the bot.")
 st.sidebar.write("3. Type 'exit' to end the conversation.")
-
+widget_counter=1
 # User input
-user_input = st.text_input("You:", key="user_input")
-
+user_input = st.text_input("You:", key=f"chat_input_{widget_counter}")
+widget_counter+=1
 # Bot response and conversation loop
 if st.button("Send", key="send_button"):
     while user_input.lower() != "exit":
@@ -37,7 +37,8 @@ if st.button("Send", key="send_button"):
             conversation.append("Bot: I'm sorry, I don't understand that.")
             st.markdown("Bot: I'm sorry, I don't understand that.")
 
-        user_input = st.text_input("You:", key="user_input")
+        user_input = st.text_input("You:", key=f"chat_input_{widget_counter}")
+        widget_counter+=1
 
 # Display conversation history
 st.text_area("Conversation History", value="\n".join(conversation))
