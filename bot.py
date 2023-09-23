@@ -25,7 +25,7 @@ widget_counter = 1
 def chat_widget(widget_counter):
     # User input
     user_input = st.text_input("You:", key=f"chat_input_{widget_counter}")
-
+    widget_counter += 1
     return user_input
 
 # Bot response and conversation loop
@@ -34,6 +34,7 @@ def chat_loop(widget_counter):
     
     while user_input.lower() != "exit":
         submit_button_key = f"submit_button_{widget_counter}"
+        widget_counter += 1
         submit_button = st.button("Send", key=submit_button_key)
 
         if submit_button:
