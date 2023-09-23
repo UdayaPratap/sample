@@ -42,13 +42,15 @@ def chat_loop(widget_counter):
             user_input = user_input.lower()
             conversation.append(f"You: {user_input}")
 
+            response_container = st.empty()
+            
             if user_input in chatbot_responses:
                 response = chatbot_responses[user_input]
                 conversation.append(f"Bot: {response}")
-                st.write(f"Bot: {response}", key=f"response_{widget_counter}")
+                response_container.write(f"Bot: {response}")
             else:
                 conversation.append("Bot: I'm sorry, I don't understand that.")
-                st.write("Bot: I'm sorry, I don't understand that.", key=f"response_{widget_counter}")
+                response_container.write("Bot: I'm sorry, I don't understand that.")
 
             widget_counter += 1
             user_input, submit_button = chat_widget(widget_counter)
