@@ -22,27 +22,39 @@ st.sidebar.write("3. Type 'exit' to end the conversation.")
 
 widget_counter = 1
 
-# Create a text input for the chat interaction
-user_input = st.text_input("You:", key=f"chat_input_{widget_counter}")
+def chat_widget(widget_counter):
+    # User input
+    user_input = st.text_input("You:", key=f"chat_input_{widget_counter}")
+
+    return user_input
 
 # Bot response and conversation loop
-while user_input.lower() != "exit":
-    submit_button = st.button("Send")
+def chat_loop(widget_counter):
+    user_input = chat_widget(widget_counter)
+    
+    while user_input.lower() != "exit":
+        submit_button_key = f"submit_button_{widget_counter}"
+        submit_button = st.button("Send", key=submit_button_key)
 
-    if submit_button:
-        user_input = user_input.lower()
-        conversation.append(f"You: {user_input}")
+        if submit_button:
+            user_input = user_input.lower()
+            conversation.append(f"You: {user_input}")
 
-        if user_input in chatbot_responses:
-            response = chatbot_responses[user_input]
-            conversation.append(f"Bot: {response}")
-            st.write(f"Bot: {response}")
-        else:
-            conversation.append("Bot: I'm sorry, I don't understand that.")
-            st.write("Bot: I'm sorry, I don't understand that.")
+            response_container = st.empty()
+            
+            if user_input in chatbot_responses:
+                response = chatbot_responses[user_input]
+                conversation.append(f"Bot: {response}")
+                response_container.write(f"Bot: {response}")
+            else:
+                conversation.append("Bot: I'm sorry, I don't understand that.")
+                response_container.write("Bot: I'm sorry, I don't understand that.")
 
-        widget_counter += 1
-        user_input = st.text_input("You:", key=f"chat_input_{widget_counter}")
+            widget_counter += 1
+            user_input = chat_widget(widget_counter)
+
+# Call the chat loop function to start the conversation
+chat_loop(widget_counter)
 
 # Display conversation history
 st.text_area("Conversation History", value="\n".join(conversation), key="conversation_history")
