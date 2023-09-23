@@ -1,4 +1,5 @@
 import streamlit as st
+
 # Define fixed commands and responses for your chatbot
 chatbot_responses = {
     "hi": "Hello! How can I assist you today?",
@@ -20,10 +21,10 @@ st.sidebar.write("2. Click the 'Send' button to chat with the bot.")
 st.sidebar.write("3. Type 'exit' to end the conversation.")
 
 # User input
-user_input = st.text_input("You:", "")
+user_input = st.text_input("You:", key="user_input")
 
 # Bot response and conversation loop
-if st.button("Send"):
+if st.button("Send", key="send_button"):
     while user_input.lower() != "exit":
         user_input = user_input.lower()
         conversation.append(f"You: {user_input}")
@@ -31,12 +32,12 @@ if st.button("Send"):
         if user_input in chatbot_responses:
             response = chatbot_responses[user_input]
             conversation.append(f"Bot: {response}")
-            st.text(response)
+            st.text(response, key=f"response_{len(conversation)}")
         else:
             conversation.append("Bot: I'm sorry, I don't understand that.")
-            st.text("Bot: I'm sorry, I don't understand that.")
+            st.text("Bot: I'm sorry, I don't understand that.", key=f"response_{len(conversation)}")
 
-        user_input = st.text_input("You:", "")
+        user_input = st.text_input("You:", key="user_input")
 
 # Display conversation history
-st.text_area("Conversation History", value="\n".join(conversation))
+st.text_area("Conversation History", value="\n".join(conversation), key="conversation_history")
