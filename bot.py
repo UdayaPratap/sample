@@ -29,7 +29,7 @@ def chat_widget(widget_counter):
     # Create a form for the chat interaction
     with st.form("chat_form"):
         # Submit button
-        submit_button = st.form_submit_button("Send", key=f"submit_button_{widget_counter}")
+        submit_button = st.form_submit_button("Send")
 
     return user_input, submit_button
 
