@@ -1,5 +1,4 @@
 import streamlit as st
-from streamlit.proto.Widget_pb2 import WidgetState
 
 # Define fixed commands and responses for your chatbot
 chatbot_responses = {
