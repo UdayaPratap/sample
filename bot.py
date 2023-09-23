@@ -32,12 +32,12 @@ if st.button("Send", key="send_button"):
         if user_input in chatbot_responses:
             response = chatbot_responses[user_input]
             conversation.append(f"Bot: {response}")
-            st.markdown(f"Bot: {response}", key=f"response_{len(conversation)}")
+            st.markdown(f"Bot: {response}")
         else:
             conversation.append("Bot: I'm sorry, I don't understand that.")
-            st.markdown("Bot: I'm sorry, I don't understand that.", key=f"response_{len(conversation)}")
+            st.markdown("Bot: I'm sorry, I don't understand that.")
 
         user_input = st.text_input("You:", key="user_input")
 
 # Display conversation history
-st.text_area("Conversation History", value="\n".join(conversation), key="conversation_history")
+st.text_area("Conversation History", value="\n".join(conversation))
