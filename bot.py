@@ -22,35 +22,39 @@ st.sidebar.write("3. Type 'exit' to end the conversation.")
 
 widget_counter = 1
 
-# User input
-user_input = st.text_input("You:", key=f"chat_input_{widget_counter}")
-widget_counter += 1
+def chat_widget(widget_counter):
+    # User input
+    user_input = st.text_input("You:", key=f"chat_input_{widget_counter}")
 
-# Create a form for the chat interaction
-with st.form("chat_form"):
-    # Submit button
-    submit_button = st.form_submit_button("Send", key=f"submit_button_{widget_counter}")
+    # Create a form for the chat interaction
+    with st.form("chat_form"):
+        # Submit button
+        submit_button = st.form_submit_button("Send", key=f"submit_button_{widget_counter}")
+
+    return user_input, submit_button
 
 # Bot response and conversation loop
-while user_input.lower() != "exit":
-    if submit_button:
-        user_input = user_input.lower()
-        conversation.append(f"You: {user_input}")
+def chat_loop(widget_counter):
+    user_input, submit_button = chat_widget(widget_counter)
+    
+    while user_input.lower() != "exit":
+        if submit_button:
+            user_input = user_input.lower()
+            conversation.append(f"You: {user_input}")
 
-        if user_input in chatbot_responses:
-            response = chatbot_responses[user_input]
-            conversation.append(f"Bot: {response}")
-            st.write(f"Bot: {response}", key=f"response_{widget_counter}")
-        else:
-            conversation.append("Bot: I'm sorry, I don't understand that.")
-            st.write("Bot: I'm sorry, I don't understand that.", key=f"response_{widget_counter}")
+            if user_input in chatbot_responses:
+                response = chatbot_responses[user_input]
+                conversation.append(f"Bot: {response}")
+                st.write(f"Bot: {response}", key=f"response_{widget_counter}")
+            else:
+                conversation.append("Bot: I'm sorry, I don't understand that.")
+                st.write("Bot: I'm sorry, I don't understand that.", key=f"response_{widget_counter}")
 
-        # Create a new form for the next interaction
-        with st.form("chat_form"):
-            user_input = st.text_input("You:", key=f"chat_input_{widget_counter}")
-            submit_button = st.form_submit_button("Send", key=f"submit_button_{widget_counter}")
+            widget_counter += 1
+            user_input, submit_button = chat_widget(widget_counter)
 
-        widget_counter += 1
+# Call the chat loop function to start the conversation
+chat_loop(widget_counter)
 
 # Display conversation history
 st.text_area("Conversation History", value="\n".join(conversation), key="conversation_history")
