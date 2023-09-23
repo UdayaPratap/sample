@@ -1,3 +1,4 @@
+import streamlit as st
 # Define fixed commands and responses for your chatbot
 chatbot_responses = {
     "hi": "Hello! How can I assist you today?",
