@@ -32,10 +32,10 @@ if st.button("Send", key="send_button"):
         if user_input in chatbot_responses:
             response = chatbot_responses[user_input]
             conversation.append(f"Bot: {response}")
-            st.markdown(f"Bot: {response}")
+            st.write(f"Bot: {response}")
         else:
             conversation.append("Bot: I'm sorry, I don't understand that.")
-            st.markdown("Bot: I'm sorry, I don't understand that.")
+            st.write("Bot: I'm sorry, I don't understand that.")
 
         user_input = st.text_input("You:", key=f"chat_input_{widget_counter}")
         widget_counter+=1
