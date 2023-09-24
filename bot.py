@@ -59,13 +59,13 @@ scraped_data={
 st.subheader("Chat with SHopy - Your Shopping Assistant")
 
  chatbot_responses = {
-        'title': ['name', 'title', 'brand', 'product name', 'what is it called'],
-        'price': ['price', 'cost', 'how much', 'value', 'worth', 'expense'],
-        'description': ['short description', 'brief description', 'describe', 'details', 'detail', 'specs', 'specifications', 'features'],
-        'rating': ['rating', 'ratings', 'rated', 'stars', 'feedback', 'reviews'],
-        'reviews_count': ['reviews count', 'no of reviews', 'number of reviews', 'how many reviews'],
-        'availability': ['deliver', 'delivery', 'available', 'availability', 'in stock', 'can I buy it'],
-        'all_info': ['display all data', 'display all info', 'display all information', 'give all info', 'show everything', 'show all details']
+'title': ['name', 'title', 'brand', 'product name', 'what is it called'],
+'price': ['price', 'cost', 'how much', 'value', 'worth', 'expense'],
+'description': ['short description', 'brief description', 'describe', 'details', 'detail', 'specs', 'specifications', 'features'],
+'rating': ['rating', 'ratings', 'rated', 'stars', 'feedback', 'reviews'],
+'reviews_count': ['reviews count', 'no of reviews', 'number of reviews', 'how many reviews'],
+'availability': ['deliver', 'delivery', 'available', 'availability', 'in stock', 'can I buy it'],
+'all_info': ['display all data', 'display all info', 'display all information', 'give all info', 'show everything', 'show all details']
 }
 
     # Function to initialize the conversation state
