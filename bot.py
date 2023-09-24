@@ -58,7 +58,7 @@ scraped_data={
 }
 st.subheader("Chat with SHopy - Your Shopping Assistant")
 
- chatbot_responses = {
+chatbot_responses = {
 'title': ['name', 'title', 'brand', 'product name', 'what is it called'],
 'price': ['price', 'cost', 'how much', 'value', 'worth', 'expense'],
 'description': ['short description', 'brief description', 'describe', 'details', 'detail', 'specs', 'specifications', 'features'],
